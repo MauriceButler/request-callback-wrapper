@@ -24,5 +24,8 @@
     "wrapper",
     "http",
     "https"
-  ]
+  ],
+  "dependencies": {
+    "get-stack": "^1.0.0"
+  }
 }

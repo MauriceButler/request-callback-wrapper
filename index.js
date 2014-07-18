@@ -1,25 +1,12 @@
-function getStackInfo(){
-    var orig = Error.prepareStackTrace,
-        error = new Error(),
-        stack;
-
-    Error.prepareStackTrace = function(){return arguments[1];};
-    Error.captureStackTrace(error, arguments.callee);
-
-    stack = error.stack[1];
-
-    Error.prepareStackTrace = orig;
-
-    return ' at ' + (stack.fun.name || 'anonymous') + ' (' + stack.getFileName() + ':' + stack.getLineNumber() + ')';
-}
+var getStack = require('get-stack');
 
 module.exports = function (callback){
-    var stackInfo = getStackInfo();
+    var stackInfo = getStack(1);
 
     return function (error, response, data){
         if(error){
             if(error.message === 'connect ECONNREFUSED'){
-                error = new Error(error.message += stackInfo);
+                error = new Error(error.message += ' at ' + stackInfo);
             }
 
             return callback(error);
