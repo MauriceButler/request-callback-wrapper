@@ -1,0 +1,28 @@
+{
+  "name": "request-callback-wrapper",
+  "version": "0.0.0",
+  "description": "Wraps a callback for request to handle errors, status codes and ECONNREFUSED in a nicer way",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MauriceButler/request-callback-wrapper.git"
+  },
+  "author": "Maurice Butler <maurice.butler@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MauriceButler/request-callback-wrapper/issues"
+  },
+  "homepage": "https://github.com/MauriceButler/request-callback-wrapper",
+  "keywords": [
+    "ECONNREFUSED",
+    "error",
+    "request",
+    "callback",
+    "wrapper",
+    "http",
+    "https"
+  ]
+}
