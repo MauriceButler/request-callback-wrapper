@@ -5,7 +5,7 @@ module.exports = function (callback){
 
     return function (error, response, data){
         if(error){
-            if(error.message === 'connect ECONNREFUSED'){
+            if(error.message === 'connect ECONNREFUSED' || error.message === 'connect ETIMEDOUT'){
                 error = new Error(error.message += ' at ' + stackInfo);
             }
 

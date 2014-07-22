@@ -32,6 +32,19 @@ test('ECONNREFUSED error', function (t) {
     callback(testError);
 });
 
+test('ETIMEDOUT error', function (t) {
+    t.plan(3);
+
+    var testError = new Error('connect ETIMEDOUT'),
+        callback = wrapCallback(function(error, data){
+            t.notEqual(error, testError, 'different error instance');
+            t.equal(error.message, 'connect ETIMEDOUT at anonymous (' + __filename + ':39)' , 'correct error message');
+            t.notOk(data, 'no data');
+        });
+
+    callback(testError);
+});
+
 test('statusCode 400', function (t) {
     t.plan(2);
 
