@@ -1,4 +1,5 @@
-var getStack = require('get-stack');
+var getStack = require('get-stack'),
+    errors = require('generic-errors');
 
 module.exports = function (callback){
     var stackInfo = getStack(1);
@@ -13,7 +14,33 @@ module.exports = function (callback){
         }
 
         if(response && response.statusCode >= 400){
-            return callback(data);
+            if(errors[response.statusCode]){
+                return callback(new errors[response.statusCode](data));
+            }
+
+            if(!data){
+                data = {
+                    message: 'An unknown error occured'
+                };
+            }
+
+            if(typeof data === 'string'){
+                data = {
+                    message: data
+                };
+            }
+
+            if(!('code' in data)){
+                data.code = response.statusCode;
+            }
+
+            data.code = parseInt(data.code, 10) || 500;
+
+            if(data.code < 400){
+                data.code = 500;
+            }
+
+            return callback(new errors.BaseError(data));
         }
 
         callback(null, data);
