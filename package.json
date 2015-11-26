@@ -1,6 +1,6 @@
 {
   "name": "request-callback-wrapper",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Wraps a callback for request to handle errors, status codes and ECONNREFUSED in a nicer way",
   "main": "index.js",
   "scripts": {
