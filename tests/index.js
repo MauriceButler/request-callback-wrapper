@@ -103,12 +103,12 @@ test('error status code but no error value', function (t) {
 
     var testData = null,
         testResponse = {statusCode: 777},
-        callback = wrapCallback(errorCallback(t, 'An unknown error occured', 777));
+        callback = wrapCallback(errorCallback(t, 'An unknown error occurred', 777));
 
     callback(null, testResponse, testData);
 });
 
-test('error with code in data < 400 is deaulted to 500', function (t) {
+test('error with code in data < 400 is defaulted to 500', function (t) {
     t.plan(4);
 
     var testData = {code: 111, message: 'test message'},
@@ -118,7 +118,7 @@ test('error with code in data < 400 is deaulted to 500', function (t) {
     callback(null, testResponse, testData);
 });
 
-test('error with code in data > 400 isnt changed', function (t) {
+test('error with code in data > 400 is not changed', function (t) {
     t.plan(4);
 
     var testData = {code: 999, message: 'test message'},
